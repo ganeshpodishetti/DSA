@@ -68,15 +68,11 @@ void insertAtFront(int value){
 // display list
 void display()
 {
-    if(head == NULL)
-    {
-        cout<<"List is empty"<<endl;
-    } else {
-        while(head != NULL){
+    
+        while(head!= NULL){
             cout<<head->data<<" ";
-            head = head ->next;
+            head = head->next;
         }
-    }
     cout<<endl;
 }
 
@@ -92,6 +88,53 @@ bool search(int key){
     return false;
 }
 
+// delete the element at starting
+void deleteAtHead()
+{
+    Node* todelete = head;
+    head = head->next;
+    delete todelete;
+}
+
+// delete at middle
+void deleteAtMiddle(int value)
+{
+    if(head == NULL){
+        return;
+    }
+    if(head->next == NULL){
+        deleteAtHead(); // if only one element present
+    }
+  Node* temp = head;
+  while(temp->next->data != value){
+      temp = temp->next;
+  }
+  Node* toDelete = temp->next;
+  temp->next = temp->next->next;
+  delete toDelete;
+}
+
+// delete node at end
+void deleteAtEnd(){
+    Node* lastNode, *secondNode;
+    if(head == NULL){
+        cout<<"List is empty"<<endl;
+    } else {
+        lastNode = head;
+        secondNode = head;
+        while(lastNode->next != NULL){
+            secondNode = lastNode;
+            lastNode = lastNode->next;
+        }
+        if(lastNode == NULL){
+            head = NULL;
+        } else {
+            secondNode->next = NULL;
+        }
+        delete lastNode;
+    }
+}
+
 int main()
 {
     int a[5] = {1, 2, 3, 4, 5};
@@ -104,14 +147,25 @@ int main()
     insertAtFront(10);
     insertAtFront(9);
     insertAtFront(8);
+    // display list
+    //display();
+    
+    // display head of the list
+    cout<<"head of the list = "<<head->data<<endl;
+
 
     // search an element
     cout<<search(1)<<endl;
 
-    // display head of the list
-    cout<<head->data<<endl;
+    // delete at the head
+    deleteAtHead();
 
-    // display the list
+    // delete middle
+    deleteAtMiddle(3);
+
+    // delete At End
+    deleteAtEnd();
+
     display();
 
     return 0;
