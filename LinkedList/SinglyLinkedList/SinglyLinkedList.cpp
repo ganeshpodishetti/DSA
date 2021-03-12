@@ -54,6 +54,25 @@ void insertAtEnd(int newValue)
   temp->next = newNode;
 }
 
+// Insert at middle
+void insertAtMiddle(int value){
+    Node* newNode = new Node(value);
+  if(head == NULL){
+      head = newNode;
+      return;
+  } else {
+
+      Node* slow = head;
+      Node* fast = head;
+      while(fast != NULL && fast->next != NULL){
+          fast = fast->next->next;
+          slow = slow->next;
+      }
+      newNode->next = slow->next;
+      slow->next = newNode; 
+  }
+}
+
 // insert at front to the list
 void insertAtFront(int value){
     Node* newNode = new Node(value);
@@ -147,6 +166,7 @@ int main()
     insertAtFront(10);
     insertAtFront(9);
     insertAtFront(8);
+    
     // display list
     //display();
     
@@ -162,6 +182,7 @@ int main()
 
     // delete middle
     deleteAtMiddle(3);
+    insertAtMiddle(3);
 
     // delete At End
     deleteAtEnd();
