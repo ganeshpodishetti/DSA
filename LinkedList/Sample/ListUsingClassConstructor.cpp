@@ -51,6 +51,18 @@ void display()
     cout<<endl;
 }
 
+bool search(int k){
+    if(head == NULL){
+        return false;
+    }
+    while(head!=NULL){
+        if(head->data==k){
+            return true;
+        }
+        head = head->next;
+    }
+    return false;
+}
 int main()
 {
     /*
@@ -70,7 +82,7 @@ int main()
     insertAtEnd(6);
     insertAtEnd(7);
     insertAtEnd(8);
-
     display();
+    cout<<search(8)<<endl;
 }
 
