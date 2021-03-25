@@ -4,7 +4,7 @@
  * ? 2. Class, memory allocation using new operator faster than malloc, dealloacate memory using delete -> delete operator calls deconstructor
  * * class with free can cause memory leak.
  * * structure allocate memory for data members at once
- * * new operator allocates memory when constructor created
+ * * new operator allocates memory when object created
  * * Structure Implementation
  * struct Node{
  * int data;
@@ -168,7 +168,7 @@ int main()
     insertAtFront(8);
     
     // display list
-    //display();
+    display();
     
     // display head of the list
     cout<<"head of the list = "<<head->data<<endl;
