@@ -37,6 +37,22 @@ void insertAtFront(node* &head, int value)
     head = newNode;
 }
 
+// Insert at between
+void insertAtBw(node* &head, int value, int pos)
+{
+    node* temp = head;
+    node* newNode = new node(value);
+    if(head==NULL){
+        head = newNode;
+        return;
+    }
+    while(temp->next != NULL && temp->data != pos){
+        temp = temp->next;
+    }
+    newNode->next=temp->next;
+    temp->next=newNode;
+}
+
 // search an element
 bool search(node* head, int k)
 {
@@ -84,6 +100,18 @@ void deleteValue(node* &head, int value)
     delete todelete;
 }
 
+// Delete at end
+void deleteAtEnd(node* &head)
+{
+    node* temp = head;
+    while(temp->next!=NULL && temp->next->next != NULL){
+        temp = temp->next;
+    }
+        node* toDelete = temp->next;
+        temp->next = NULL;
+        delete toDelete;
+}
+
 // Display the list
 void display(node* head)
 {
@@ -126,6 +154,16 @@ int main()
     // Delete at head
     cout<<"Delete at head : ";
     deleteAtHead(head);
+    display(head);
+
+    // Delete at End
+    cout<<"Delete at end : ";
+    deleteAtEnd(head);
+    display(head);
+
+    // Insert at between
+    cout<<"Insert at between : ";
+    insertAtBw(head, 5, 2);
     display(head);
 
     return 0;
