@@ -71,7 +71,6 @@ void deleteAtPos(node* &head, int pos)
         temp->next->prev = temp->prev;
     }
     delete temp;
-
 }
 
 // display list
